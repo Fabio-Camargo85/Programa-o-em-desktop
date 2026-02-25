@@ -1,24 +1,55 @@
 import tkinter as tk
-
-def somar():
-    n1 = float(num1.get())
-    n2 = float(num2.get())
-    resultado.set(n1 + n2)
-
+ 
 janela = tk.Tk()
 janela.title("Calculadora")
-janela.geometry("400x300")
-
-num1 = tk.Entry(janela)
-num1.pack(pady=10)
-
-num2 = tk.Entry(janela)
-num2.pack(pady=10)
-
-resultado = tk.StringVar()
-
-tk.Button(janela, text="Somar", command=somar).pack(pady=10)
-
-tk.Label(janela, textvariable=resultado).pack(pady=10)
-
+janela.geometry("600x400")
+ 
+ 
+ 
+def calculo():
+    try:
+        valor1 = float(entrada1.get())
+        valor2 = float(entrada2.get())
+        operacao = EntradaOperacao.get()
+ 
+        if operacao == "+":
+            calcular = valor1 + valor2
+        elif operacao == "-":
+            calcular = valor1 - valor2
+        elif operacao == "*":
+           calcular = valor1 * valor2
+        elif operacao == "/":
+            calcular = valor1 / valor2
+ 
+        result.config(text=f"Resultado: {calcular}")
+    except:
+        result.config(text=f"Informe Numeros Validos")
+   
+ 
+ 
+num1 = tk.Label(janela, text="Inserir Variável: ").grid(row=0, column=0,padx=10,pady=10,sticky="w")
+num1.pack()
+entrada1 = tk.Entry(janela)
+entrada1.pack()
+ 
+ 
+Labeloperacao = tk.Label(janela,text="Informe a operação: ")
+Labeloperacao.pack()
+EntradaOperacao = tk.Entry(janela)
+EntradaOperacao.pack()
+ 
+num2 = tk.Label(janela, text="Inserir Variável: ")
+num2.pack()
+entrada2 = tk.Entry(janela)
+entrada2.pack()
+ 
+ 
+result = tk.Label(janela, text="Resultado: ")
+result.pack()
+ 
+ 
+botao = tk.Button(janela,text="Calcular", command=calculo)
+botao.pack()
+ 
+ 
 janela.mainloop()
